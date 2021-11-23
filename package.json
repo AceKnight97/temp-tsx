@@ -2,6 +2,11 @@
   "name": "test-app",
   "version": "0.1.0",
   "private": true,
+  "proxy": {
+    "*": {
+      "target": "http://13.234.243.2:8080/e-core-uaa"
+    }
+  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",
@@ -44,6 +49,7 @@
   "devDependencies": {
     "@apollo/client": "^3.5.4",
     "@types/axios": "^0.14.0",
+    "@types/cors": "^2.8.12",
     "@types/lodash": "^4.14.177",
     "@types/moment": "^2.13.0",
     "@types/node-sass": "^4.11.2",
@@ -52,7 +58,9 @@
     "@types/react-router-dom": "^5.3.2",
     "@types/redux-react-session": "^2.6.0",
     "@types/sass-loader": "^8.0.2",
+    "apollo-link-rest": "^0.8.0-beta.0",
     "cors": "^2.8.5",
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "http": "^0.0.1-security"
   }
 }

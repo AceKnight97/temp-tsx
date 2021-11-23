@@ -1,9 +1,7 @@
-import './App.css';
-import 'antd/dist/antd.css';
-import Main from './pages/main';
+import "./App.css";
+import "antd/dist/antd.css";
+import Main from "./pages/main";
 
-const App  = ()=>(
-  <Main />
-)
+const App = () => <Main />;
 
 export default App;

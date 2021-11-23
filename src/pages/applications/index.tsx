@@ -8,13 +8,22 @@ import { getApplications } from "../../api/applications";
 
 const Applications: React.FC = () => {
   const [state, setState] = useMergeState({
-    current: "SIGN_IN",
+    applications: [],
+    loading: true,
+    page: 1,
+    shouldHideNextButton: false,
   });
-  const { current } = state;
+
+  const fetchData = async () => {
+    const applications = await getApplications();
+    setState({ applications, loading: false });
+  };
 
   useEffect(() => {
-    getApplications();
+    fetchData();
   }, []);
+
+  const { applications, loading, page, shouldHideNextButton } = state;
 
   const generateColumns = () => {
     const columns = [
@@ -65,7 +74,6 @@ const Applications: React.FC = () => {
   };
 
   const goToDetails = () => {};
-  const fetchData = () => {};
   const handleChangePage = () => {};
 
   return (
@@ -77,16 +85,14 @@ const Applications: React.FC = () => {
       <MainTable
         rowKey="_id"
         name="applications"
-        // className="patients-active-wrapper"
-        // searchByList={searchByList.current}
         columns={generateColumns()}
-        totalData={state.activeCarePlans}
-        shouldHideNextButton={state.isEndOfActiveCarePlans}
+        totalData={applications}
+        shouldHideNextButton={shouldHideNextButton}
         onRowClick={goToDetails}
         fetchData={fetchData}
-        loading={state.loading}
+        loading={loading}
         sorter={{}}
-        page={state.page}
+        page={page}
         handleChangePage={handleChangePage}
         isEmptySearching={false}
       />
