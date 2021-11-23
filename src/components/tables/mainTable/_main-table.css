@@ -1,0 +1,11 @@
+.main-table {
+  padding: 1.5rem;
+}
+.main-table-body {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: 1.5rem;
+  background-color: white;
+  border-radius: 2px;
+}

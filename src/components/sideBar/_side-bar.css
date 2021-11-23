@@ -1,0 +1,16 @@
+.side-bar {
+  height: 100%;
+  background-color: white;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.15);
+}
+.side-bar-logo {
+  width: 200px;
+  height: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+.side-bar-logo img {
+  max-width: 140px;
+}
