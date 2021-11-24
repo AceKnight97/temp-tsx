@@ -2,11 +2,6 @@
   "name": "test-app",
   "version": "0.1.0",
   "private": true,
-  "proxy": {
-    "*": {
-      "target": "http://13.234.243.2:8080/e-core-uaa"
-    }
-  },
   "dependencies": {
     "@testing-library/jest-dom": "^5.15.0",
     "@testing-library/react": "^11.2.7",

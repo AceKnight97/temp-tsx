@@ -73,7 +73,9 @@ const Applications: React.FC = () => {
     return columns;
   };
 
-  const goToDetails = () => {};
+  const goToDetails = () => {
+    console.log("object");
+  };
   const handleChangePage = () => {};
 
   return (
