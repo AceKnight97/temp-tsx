@@ -5,6 +5,7 @@ import "./_applications.css";
 import Header from "../../components/Header";
 import MainTable from "../../components/tables/mainTable";
 import { getApplications } from "../../api/applications";
+import ApplicationDrawer from "../../components/drawers/applicationDrawer";
 
 const Applications: React.FC = () => {
   const [state, setState] = useMergeState({
@@ -12,6 +13,8 @@ const Applications: React.FC = () => {
     loading: true,
     page: 1,
     shouldHideNextButton: false,
+    appDrawerVis: false,
+    rowData: {},
   });
 
   const fetchData = async () => {
@@ -19,11 +22,25 @@ const Applications: React.FC = () => {
     setState({ applications, loading: false });
   };
 
+  const onCloseAppDrawer = () => {
+    setState({ appDrawerVis: false });
+  };
+  const onClickAddNew = () => {
+    setState({ appDrawerVis: true });
+  };
+
   useEffect(() => {
     fetchData();
   }, []);
 
-  const { applications, loading, page, shouldHideNextButton } = state;
+  const {
+    applications,
+    loading,
+    page,
+    shouldHideNextButton,
+    appDrawerVis,
+    rowData,
+  } = state;
 
   const generateColumns = () => {
     const columns = [
@@ -73,32 +90,44 @@ const Applications: React.FC = () => {
     return columns;
   };
 
-  const goToDetails = () => {
-    console.log("object");
+  const goToDetails = (index: any, record: any) => {
+    console.log({ record });
+    setState({ appDrawerVis: true, rowData: record });
   };
   const handleChangePage = () => {};
 
   return (
-    <div className="applications">
-      <Layout.Header>
-        <Header title="Applications" />
-      </Layout.Header>
+    <>
+      <div className="applications">
+        <Layout.Header>
+          <Header title="Applications" />
+        </Layout.Header>
 
-      <MainTable
-        rowKey="_id"
-        name="applications"
-        columns={generateColumns()}
-        totalData={applications}
-        shouldHideNextButton={shouldHideNextButton}
-        onRowClick={goToDetails}
-        fetchData={fetchData}
-        loading={loading}
-        sorter={{}}
-        page={page}
-        handleChangePage={handleChangePage}
-        isEmptySearching={false}
+        <MainTable
+          rowKey="id"
+          name="applications"
+          columns={generateColumns()}
+          totalData={applications}
+          shouldHideNextButton={shouldHideNextButton}
+          onRowClick={goToDetails}
+          fetchData={fetchData}
+          loading={loading}
+          sorter={{}}
+          page={page}
+          handleChangePage={handleChangePage}
+          isEmptySearching={false}
+          onClickAddNew={onClickAddNew}
+          isNew
+        />
+      </div>
+
+      <ApplicationDrawer
+        visible={appDrawerVis}
+        onCloseDrawer={onCloseAppDrawer}
+        title={rowData?.appId}
+        rowData={rowData}
       />
-    </div>
+    </>
   );
 };
 

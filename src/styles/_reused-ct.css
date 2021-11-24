@@ -1,1 +1,18 @@
+.fr-sb {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
+.dis-none {
+  display: none;
+}
+
+.nor-btn {
+  padding: 0;
+  margin: 0;
+  outline: none;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+}

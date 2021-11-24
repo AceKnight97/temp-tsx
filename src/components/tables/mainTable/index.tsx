@@ -1,9 +1,10 @@
-import { Col, Row } from "antd";
+import { Button, Col, Row } from "antd";
 import classnames from "classnames";
 import _ from "lodash";
 import React, { useMemo } from "react";
 import { useMergeState } from "../../../helpers/customHooks";
 import TableBasic from "../tableBasic";
+import { PlusOutlined } from "@ant-design/icons";
 import InputCT from "../../inputs/inputCT";
 
 import "./_main-table.css";
@@ -15,7 +16,7 @@ interface Props {
   searchByList?: any | [];
   columns?: any;
   totalData?: any;
-  onRowClick: () => void;
+  onRowClick: (index: any, record: any) => void;
   fetchData: (
     updatedFilter: object | {},
     isNextPage: boolean | false,
@@ -30,6 +31,8 @@ interface Props {
   isEmptySearching?: boolean;
   page: number | 1;
   handleChangePage: (page: number) => void;
+  onClickAddNew: () => void;
+  isNew?: boolean | false;
 }
 
 const MainTable: React.FC<Props> = (props) => {
@@ -50,6 +53,8 @@ const MainTable: React.FC<Props> = (props) => {
     totalData,
     shouldHideNextButton,
     handleChangePage,
+    onClickAddNew,
+    isNew,
   } = props;
 
   const { searchText } = state;
@@ -76,7 +81,7 @@ const MainTable: React.FC<Props> = (props) => {
   return (
     <div className={classnames(className, "main-table")}>
       <div className="main-table-body">
-        <Row gutter={24}>
+        <Row gutter={24} className="fr-sb pr-12">
           <Col span={8}>
             <InputCT
               onChange={onChange}
@@ -85,6 +90,12 @@ const MainTable: React.FC<Props> = (props) => {
               placeholder="Search..."
             />
           </Col>
+          {isNew && (
+            <Button onClick={onClickAddNew} type="primary">
+              <PlusOutlined />
+              Add New
+            </Button>
+          )}
         </Row>
 
         <TableBasic

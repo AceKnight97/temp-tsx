@@ -1,0 +1,23 @@
+.application-drawer {
+  /* margin-top: 1.5rem; */
+}
+.application-drawer-header {
+  height: 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem;
+  font-size: 1.25rem;
+  font-weight: bold;
+  border: 1px solid #d9d9d9;
+}
+.application-drawer-body {
+  padding: 1.5rem;
+}
+.application-drawer-delete-btn,
+.application-drawer-edit-btn {
+  width: 100px;
+}
+.application-drawer-close-btn {
+  padding: 0.25rem 0.5rem;
+}

@@ -1,6 +1,6 @@
 import classnames from "classnames";
 import React from "react";
-
+import "./_input-title.css";
 interface Props {
   className?: string | "";
   title?: string | "";

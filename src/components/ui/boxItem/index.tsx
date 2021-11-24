@@ -1,5 +1,6 @@
 import React from "react";
 import classnames from "classnames";
+import "./_box-item.css";
 
 const BoxItem: React.FC<{
   className?: string | "";
