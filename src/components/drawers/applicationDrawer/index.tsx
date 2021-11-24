@@ -4,6 +4,7 @@ import React, { useEffect } from "react";
 import { useMergeState } from "../../../helpers/customHooks";
 import InputCT from "../../inputs/inputCT";
 import { APP_TYPES, basicProps } from "./helper";
+import { CloseOutlined } from "@ant-design/icons";
 import "./_application-drawer.css";
 interface Props {
   visible: boolean | false;
@@ -52,7 +53,14 @@ const ApplicationDrawer: React.FC<Props> = (props) => {
 
   const onClickEdit = () => {};
 
+  const onClickExecute = () => {
+    console.log({ current });
+  };
+
   const onClickAdd = () => {};
+  const onClickBack = () => {
+    setState({ current: MAIN });
+  };
 
   const renderAddEdit = () => (
     <>
@@ -144,20 +152,35 @@ const ApplicationDrawer: React.FC<Props> = (props) => {
 
   const renderConfirm = () => (
     <>
-      <div>dasda</div>
+      <div>
+        This action can not be undone. Are you sure you want to execute it?
+      </div>
+      <div className="fr-sb mt-48">
+        <Button onClick={onClickBack} className="application-drawer-delete-btn">
+          Back
+        </Button>
+
+        <Button
+          onClick={onClickExecute}
+          type="primary"
+          className="application-drawer-edit-btn"
+        >
+          Yes
+        </Button>
+      </div>
     </>
   );
 
   const renderMainView = () => (
     <div className="application-drawer">
       <div className="application-drawer-header">
-        <span>{`Application: ${title}`}</span>
+        <span>{title ? `Application: ${title}` : "New application"}</span>
 
         <button
           className="nor-btn application-drawer-close-btn"
           onClick={onCloseDrawer}
         >
-          X
+          <CloseOutlined />
         </button>
       </div>
 

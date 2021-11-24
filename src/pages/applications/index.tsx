@@ -23,7 +23,7 @@ const Applications: React.FC = () => {
   };
 
   const onCloseAppDrawer = () => {
-    setState({ appDrawerVis: false });
+    setState({ appDrawerVis: false, rowData: {} });
   };
   const onClickAddNew = () => {
     setState({ appDrawerVis: true });
@@ -124,7 +124,7 @@ const Applications: React.FC = () => {
       <ApplicationDrawer
         visible={appDrawerVis}
         onCloseDrawer={onCloseAppDrawer}
-        title={rowData?.appId}
+        title={rowData?.appId || ""}
         rowData={rowData}
       />
     </>
